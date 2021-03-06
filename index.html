@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    </head>
+        
+    <body onLoad="listQuiz(); ">
+        <div class="container-fluid bg-dark">
+            <header>
+                <h1 class="fw-bold text-white" style="text-align: center">QUIZ</h1>
+            </header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-top">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                    aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#ajoutModal" onclick="clear_cache('ajouter');">Ajouter</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+                                aria-expanded="false">Afficher</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="listAfficher">
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+                                aria-expanded="false">Cacher</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="listCacher">
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+                            </li>
+                            <!-- Test
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="test();">Test</a>
+                            </li>
+                            -->
+                        </ul>
+                        <div class="d-flex">
+                            <select class="form-select me-2" id="typesearch">
+                                <option value="-1" selected disabled>Type de recherche:</option>
+                                <option value="Nom">Nom</option>
+                                <option value="Type">Type</option>
+                                <option value="Niveau">Niveau de difficulté</option>
+                                <option value="Auteur">Auteur</option>
+                            </select>
+                            <input type="text" class="form-control me-2" id="search" placeholder="..." onChange="Recherche();" >
+                            <button class="btn btn-outline-light" type="button" onclick="Recherche();">Rechercher</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div> 
+        
+        <div class="container" id="blockquiz">
+                <br id="sautquiz1">
+                <div class="card-body border rounded " id="quiz1">
+                    <div class="position-relative">
+                        <div class="text-black fs-5">
+                            <strong>№<span id="numberquiz1"></span> - <span id="nomquiz1" onclick="modif_test('nomquiz1');">Ligue des champions</span></strong>
+                            <span class="position-absolute end-0">
+                                <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li class="dropdown-item">Type: <span id="typequiz1">Football</span></li>
+                                    <li class="dropdown-item">Description: 
+                                        <span id="descriptionquiz1">Questions sur la ligue de champions</span></li>
+                                    <li class="dropdown-item">Niveau de difficulté: <span id="niveauquiz1">Difficile</span></li>
+                                    <li class="dropdown-item">Date de création: 10/2/2020</li>
+                                    <li class="dropdown-item">Nom de l'auteur: <span id="auteurquiz1">UEFA</span></li>
+                                </ul>
+                                <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
+                                data-bs-target="#modifModal"id="modifquiz1" onclick="ModifModal('quiz1');" ></button>
+                                <button class="btn btn-dark bi bi-x-circle-fill" type="button" data-bs-toggle="modal" 
+                                data-bs-target="#supprimerModal" id="supprimerquiz1" onclick="SupprimerModal('quiz1');"></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br id="sautquiz2">
+                <div class="card-body border rounded" id="quiz2">
+                    <div class="position-relative">
+                        <div class="text-black fs-5">
+                            <strong>№<span id="numberquiz2"></span> - <span id="nomquiz2">NBA</span></strong>
+                            <span class="position-absolute end-0">
+                                <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li class="dropdown-item">Type:<span id="typequiz2">Basketball</span></li>
+                                    <li class="dropdown-item">Description:
+                                        <span id="descriptionquiz2">Questions sur la NBA</span></li>
+                                    <li class="dropdown-item">Niveau de difficulté: <span id="niveauquiz2">Facile</span></li>
+                                    <li class="dropdown-item">Date de création: 10/2/2020</li>
+                                    <li class="dropdown-item">Nom de l'auteur: <span id="auteurquiz2">NBA</span></li>
+                                </ul>           
+                                <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
+                                data-bs-target="#modifModal"id="modifquiz2" onclick="ModifModal('quiz2');" ></button>
+                                <button class="btn btn-dark bi bi-x-circle-fill" type="button" id="supprimerquiz2" 
+                                data-bs-toggle="modal" data-bs-target="#supprimerModal" onclick="SupprimerModal('quiz2');"></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>  
+                <br id="sautquiz3">
+                <div class="card-body border rounded" id="quiz3">
+                    <div class="position-relative">
+                        <div class="text-black fs-5">
+                            <strong>№<span id="numberquiz3"></span> - <span id="nomquiz3">NHL</span></strong>
+                            <span class="position-absolute end-0">
+                                <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="dropdownMenuButton1" 
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li class="dropdown-item">Type: <span id="typequiz3">Hockey</span></li>
+                                    <li class="dropdown-item">Description:
+                                        <span id="descriptionquiz3">Questions sur la NHL</span></li>
+                                    <li class="dropdown-item">Niveau de difficulté: <span id="niveauquiz3">Moyen</span></li>
+                                    <li class="dropdown-item">Date de création: 11/2/2020</li>
+                                    <li class="dropdown-item">Nom de l'auteur: <span id="auteurquiz3">NHL</span></li>
+                                </ul>   
+                                <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
+                                data-bs-target="#modifModal"id="modifquiz3" onclick="ModifModal('quiz3');" ></button>
+                                <button class="btn btn-dark bi bi-x-circle-fill" type="button" id="supprimerquiz3"  
+                                data-bs-toggle="modal" data-bs-target="#supprimerModal" onclick="SupprimerModal('quiz3');" ></button>   
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+        </div>
+        
+
+
+          
+        <!-- Supprimer Modal -->
+        <div class="modal fade" id="supprimerModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="text-align: center">
+                    <strong class="fs-5" >Êtes-vous sur de vouloir supprimer ce quiz?</strong>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="supprimerquiz" onclick="">Supprimer</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+        <!-- Modification Modal -->
+        <div class="modal fade" id="modifModal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Modification du quiz</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Nom du quiz:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="modifnom" placeholder="...">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Type:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="modiftype" placeholder="...">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Description:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="modifdescription" placeholder="...">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Niveau de difficulté:</label>
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-select" id="modifniveau" aria-label="Default select example">
+                                <option value="-1" selected disabled>Choisissez:</option>
+                                <option value="Facile">Facile</option>
+                                <option value="Moyen">Moyen</option>
+                                <option value="Difficile">Difficile</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" id="modifquiz" onclick="">Engresister</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Ajouter Modal -->
+        <div class="modal fade" id="ajoutModal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Ajouter un quiz</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Nom du quiz:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="ajoutnom" placeholder="...">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Type:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="ajouttype" placeholder="...">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Description:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="ajoutdescription" placeholder="...">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Niveau de difficulté:</label>
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-select" id="ajoutniveau" aria-label="Default select example">
+                                <option value="-1" selected disabled>Choisissez:</option>
+                                <option value="Facile">Facile</option>
+                                <option value="Moyen">Moyen</option>
+                                <option value="Difficile">Difficile</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <label class="col-form-label">Nom de l'auteur:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" id="ajoutauteur" placeholder="...">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div id="etat_ajouter"></div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-success" onclick="Ajouter();">Ajouter</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Contact Modal -->
+        <div class="modal fade" id="contactModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Contact</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <label class="col-form-label">Prénom:</label>
+                            <input type="text" class="form-control" placeholder="...">
+                        </div>
+                        <br>
+                        <div class="">
+                            <label class="col-form-label">Nom:</label>
+                            <input type="text" class="form-control" placeholder="...">
+                        </div>
+                        <br>
+                        <div class="">
+                            <label class="col-form-label">E-Mail:</label>
+                            <input type="email" class="form-control"  placeholder="...">
+                        </div>
+                        <br>
+                        <div class="">
+                            <label class="col-form-label">Message:</label>
+                            <textarea class="form-control" rows="3" placeholder="..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-success"  data-bs-dismiss="modal" >Envoyer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="container-fluid bg-dark position-relative position-absolute bottom-0">
+            <div class="fs-6 fw-light text-white-50 lh-lg" style="text-align: center;">
+                Copyright © 2021 Youri Novikov. All rights reserved.
+            </div>
+        </footer>
+    </body>
+</html>
+
+
