@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     </head>
         
-    <body onLoad="listQuiz(); ">
+    <body onLoad="">
         <div class="container-fluid bg-dark">
             <header>
                 <h1 class="fw-bold text-white" style="text-align: center">QUIZ</h1>
@@ -27,20 +27,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#ajoutModal" onclick="clear_cache('ajouter');">Ajouter</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
-                                aria-expanded="false">Afficher</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="listAfficher">
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
-                                aria-expanded="false">Cacher</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="listCacher">
-                                </ul>
-                            </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal" onclick="clear_cache('contact');">Contact</a>
                             </li>
                             <!-- Test
                             <li class="nav-item">
@@ -56,7 +44,7 @@
                                 <option value="Niveau">Niveau de difficulté</option>
                                 <option value="Auteur">Auteur</option>
                             </select>
-                            <input type="text" class="form-control me-2" id="search" placeholder="..." onChange="Recherche();" >
+                            <input type="text" class="form-control me-2" id="search" placeholder="Ex: NBA" onChange="Recherche();" >
                             <button class="btn btn-outline-light" type="button" onclick="Recherche();">Rechercher</button>
                         </div>
                     </div>
@@ -65,80 +53,96 @@
         </div> 
         
         <div class="container" id="blockquiz">
-                <br id="sautquiz1">
-                <div class="card-body border rounded " id="quiz1">
-                    <div class="position-relative">
-                        <div class="text-black fs-5">
-                            <strong>№<span id="numberquiz1"></span> - <span id="nomquiz1" onclick="modif_test('nomquiz1');">Ligue des champions</span></strong>
-                            <span class="position-absolute end-0">
-                                <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="dropdownMenuButton1" 
-                                data-bs-toggle="dropdown" aria-expanded="false"></button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li class="dropdown-item">Type: <span id="typequiz1">Football</span></li>
-                                    <li class="dropdown-item">Description: 
-                                        <span id="descriptionquiz1">Questions sur la ligue de champions</span></li>
-                                    <li class="dropdown-item">Niveau de difficulté: <span id="niveauquiz1">Difficile</span></li>
-                                    <li class="dropdown-item">Date de création: 10/2/2020</li>
-                                    <li class="dropdown-item">Nom de l'auteur: <span id="auteurquiz1">UEFA</span></li>
-                                </ul>
-                                <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
-                                data-bs-target="#modifModal"id="modifquiz1" onclick="ModifModal('quiz1');" ></button>
-                                <button class="btn btn-dark bi bi-x-circle-fill" type="button" data-bs-toggle="modal" 
-                                data-bs-target="#supprimerModal" id="supprimerquiz1" onclick="SupprimerModal('quiz1');"></button>
-                            </span>
+                <div id="quiz1">
+                    <br>
+                    <div class="card-body border rounded ">
+                        <div class="position-relative">
+                            <div class="text-black fs-5">
+                                <strong>№<span id="numberquiz1">1</span> - <span id="nomquiz1" onclick="modif_test('nomquiz1');">LDC</span></strong>
+                                <span class="position-absolute end-0">
+                                    <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="infoquiz1" 
+                                    onclick="AfficherCollapse('collapsequiz1');"></button>
+                                    <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
+                                    data-bs-target="#modifModal"id="modifquiz1" onclick="ModifModal('quiz1');" ></button>
+                                    <button class="btn btn-dark bi bi-x-circle-fill" type="button" data-bs-toggle="modal" 
+                                    data-bs-target="#supprimerModal" id="supprimerquiz1" onclick="SupprimerModal('quiz1');"></button>
+                                </span>
+                            </div>
                         </div>
+                    </div>
+                    <div id="collapsequiz1" style="display:none;">
+                            <br>
+                            <div class="card card-body">
+                                <p>Type: <span id="typequiz1">Football</span></p>
+                                <p>Description: 
+                                    <span id="descriptionquiz1">Questions sur la ligue de champions</span>
+                                </p>
+                                <p >Niveau de difficulté: <span id="niveauquiz1">Difficile</span></p>
+                                <p >Date de création: 10/2/2020</p>
+                                <span>Nom de l'auteur: <span id="auteurquiz1">UEFA</span></span>
+                            </div>
                     </div>
                 </div>
-                <br id="sautquiz2">
-                <div class="card-body border rounded" id="quiz2">
-                    <div class="position-relative">
-                        <div class="text-black fs-5">
-                            <strong>№<span id="numberquiz2"></span> - <span id="nomquiz2">NBA</span></strong>
-                            <span class="position-absolute end-0">
-                                <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="dropdownMenuButton1" 
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li class="dropdown-item">Type:<span id="typequiz2">Basketball</span></li>
-                                    <li class="dropdown-item">Description:
-                                        <span id="descriptionquiz2">Questions sur la NBA</span></li>
-                                    <li class="dropdown-item">Niveau de difficulté: <span id="niveauquiz2">Facile</span></li>
-                                    <li class="dropdown-item">Date de création: 10/2/2020</li>
-                                    <li class="dropdown-item">Nom de l'auteur: <span id="auteurquiz2">NBA</span></li>
-                                </ul>           
-                                <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
-                                data-bs-target="#modifModal"id="modifquiz2" onclick="ModifModal('quiz2');" ></button>
-                                <button class="btn btn-dark bi bi-x-circle-fill" type="button" id="supprimerquiz2" 
-                                data-bs-toggle="modal" data-bs-target="#supprimerModal" onclick="SupprimerModal('quiz2');"></button>
-                            </span>
+                <div id="quiz2">
+                    <br>
+                    <div class="card-body border rounded">
+                        <div class="position-relative">
+                            <div class="text-black fs-5">
+                                <strong>№<span id="numberquiz2">2</span> - <span id="nomquiz2">NBA</span></strong>
+                                <span class="position-absolute end-0">
+                                    <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="infoquiz2" 
+                                    onclick="AfficherCollapse('collapsequiz2')"></button>        
+                                    <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
+                                    data-bs-target="#modifModal" id="modifquiz2" onclick="ModifModal('quiz2');" ></button>
+                                    <button class="btn btn-dark bi bi-x-circle-fill" type="button" id="supprimerquiz2" 
+                                    data-bs-toggle="modal" data-bs-target="#supprimerModal" onclick="SupprimerModal('quiz2');"></button>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>  
-                <br id="sautquiz3">
-                <div class="card-body border rounded" id="quiz3">
-                    <div class="position-relative">
-                        <div class="text-black fs-5">
-                            <strong>№<span id="numberquiz3"></span> - <span id="nomquiz3">NHL</span></strong>
-                            <span class="position-absolute end-0">
-                                <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="dropdownMenuButton1" 
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li class="dropdown-item">Type: <span id="typequiz3">Hockey</span></li>
-                                    <li class="dropdown-item">Description:
-                                        <span id="descriptionquiz3">Questions sur la NHL</span></li>
-                                    <li class="dropdown-item">Niveau de difficulté: <span id="niveauquiz3">Moyen</span></li>
-                                    <li class="dropdown-item">Date de création: 11/2/2020</li>
-                                    <li class="dropdown-item">Nom de l'auteur: <span id="auteurquiz3">NHL</span></li>
-                                </ul>   
-                                <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
-                                data-bs-target="#modifModal"id="modifquiz3" onclick="ModifModal('quiz3');" ></button>
-                                <button class="btn btn-dark bi bi-x-circle-fill" type="button" id="supprimerquiz3"  
-                                data-bs-toggle="modal" data-bs-target="#supprimerModal" onclick="SupprimerModal('quiz3');" ></button>   
-                            </span>
+                    <div id="collapsequiz2" style="display:none;">
+                            <br>
+                            <div class="card card-body">
+                                <p>Type: <span id="typequiz2">Basketball</span></p>
+                                <p>Description: 
+                                    <span id="descriptionquiz2">Questions sur la NBA</span>
+                                </p>
+                                <p >Niveau de difficulté: <span id="niveauquiz2">Facile</span></p>
+                                <p >Date de création: 10/2/2020</p>
+                                <span>Nom de l'auteur: <span id="auteurquiz2">NBA</span></span>
+                            </div>
+                    </div> 
+                </div>
+                <div id="quiz3">
+                    <br>
+                    <div class="card-body border rounded">
+                        <div class="position-relative">
+                            <div class="text-black fs-5">
+                                <strong>№<span id="numberquiz3">3</span> - <span id="nomquiz3">NHL</span></strong>
+                                <span class="position-absolute end-0">
+                                    <button class="btn btn-dark bi bi-info-circle-fill" type="button" id="infoquiz3" 
+                                    onclick="AfficherCollapse('collapsequiz3');"></button>
+                                    <button class="btn btn-dark bi bi-gear-fill" type="button" data-bs-toggle="modal" 
+                                    data-bs-target="#modifModal"id="modifquiz3" onclick="ModifModal('quiz3');" ></button>
+                                    <button class="btn btn-dark bi bi-x-circle-fill" type="button" id="supprimerquiz3"  
+                                    data-bs-toggle="modal" data-bs-target="#supprimerModal" onclick="SupprimerModal('quiz3');" ></button>   
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div> 
+                    <div id="collapsequiz3" style="display:none;">
+                            <br>
+                        <div class="card card-body">
+                            <p>Type: <span id="typequiz3">Hockey</span></p>
+                            <p>Description: 
+                                <span id="descriptionquiz3">Questions sur la NHL</span>
+                            </p>
+                            <p >Niveau de difficulté: <span id="niveauquiz3">Moyen</span></p>
+                            <p >Date de création: 11/2/2020</p>
+                            <span>Nom de l'auteur: <span id="auteurquiz3">NHL</span></span>
+                        </div>
+                    </div> 
+                </div>
         </div>
         
 
@@ -171,50 +175,37 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Nom du quiz:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" id="modifnom" placeholder="...">
-                        </div>
+                    <div>
+                        <label>Nom du quiz</label>
+                        <input type="text" class="form-control" id="modifnom" placeholder="Ex: NBA">
                     </div>
                     <br>
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Type:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" id="modiftype" placeholder="...">
-                        </div>
+                    <div >
+                        <label>Type</label>
+                        <input type="text" class="form-control" id="modiftype" placeholder="Ex: Basketball">
                     </div>
                     <br>
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Description:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" id="modifdescription" placeholder="...">
-                        </div>
+                    <div >
+                        <label>Description</label>
+                        <input type="text" class="form-control" id="modifdescription" placeholder="Ex: Questions sur la NBA">
                     </div>
                     <br>
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Niveau de difficulté:</label>
-                        </div>
-                        <div class="col-auto">
-                            <select class="form-select" id="modifniveau" aria-label="Default select example">
-                                <option value="-1" selected disabled>Choisissez:</option>
-                                <option value="Facile">Facile</option>
-                                <option value="Moyen">Moyen</option>
-                                <option value="Difficile">Difficile</option>
-                            </select>
-                        </div>
+                    <div>
+                        <label>Niveau de difficulté</label>
+                        <select class="form-select" id="modifniveau">
+                            <option value="-1" selected disabled>Choisir</option>
+                            <option value="Facile">Facile</option>
+                            <option value="Moyen">Moyen</option>
+                            <option value="Difficile">Difficile</option>
+                        </select>
                     </div>
                 </div>
+                <div class="container">
+                    <div id="etat_modif"></div>
+                </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" id="modifquiz" onclick="">Engresister</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="modifquiz">Engresister</button>
                 </div>
             </div>
             </div>
@@ -229,61 +220,41 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Nom du quiz:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" id="ajoutnom" placeholder="...">
-                        </div>
+                    <div>
+                        <label>Nom du quiz</label>
+                        <input type="text" class="form-control" id="ajoutnom" placeholder="Ex: NBA">
                     </div>
                     <br>
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Type:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" id="ajouttype" placeholder="...">
-                        </div>
+                    <div >
+                        <label>Type</label>
+                        <input type="text" class="form-control" id="ajouttype" placeholder="Ex: Basketball">
                     </div>
                     <br>
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Description:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" id="ajoutdescription" placeholder="...">
-                        </div>
+                    <div>
+                        <label>Description</label>
+                        <input type="text" class="form-control" id="ajoutdescription" placeholder="Ex: Questions sur la NBA">
                     </div>
                     <br>
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Niveau de difficulté:</label>
-                        </div>
-                        <div class="col-auto">
-                            <select class="form-select" id="ajoutniveau" aria-label="Default select example">
-                                <option value="-1" selected disabled>Choisissez:</option>
-                                <option value="Facile">Facile</option>
-                                <option value="Moyen">Moyen</option>
-                                <option value="Difficile">Difficile</option>
-                            </select>
-                        </div>
+                    <div>
+                        <label >Niveau de difficulté:</label>
+                        <select class="form-select" id="ajoutniveau">
+                            <option value="-1" selected disabled>Choisir</option>
+                            <option value="Facile">Facile</option>
+                            <option value="Moyen">Moyen</option>
+                            <option value="Difficile">Difficile</option>
+                        </select>
                     </div>
                     <br>
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label">Nom de l'auteur:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" id="ajoutauteur" placeholder="...">
-                        </div>
+                    <div>
+                        <label>Nom de l'auteur</label>
+                        <input type="text" class="form-control" id="ajoutauteur" placeholder="Ex: NBA">
                     </div>
                 </div>
                 <div class="container">
                     <div id="etat_ajouter"></div>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                 <button type="button" class="btn btn-success" onclick="Ajouter();">Ajouter</button>
                 </div>
             </div>
@@ -299,35 +270,38 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="">
-                            <label class="col-form-label">Prénom:</label>
-                            <input type="text" class="form-control" placeholder="...">
+                        <div>
+                            <label>Prénom</label>
+                            <input id="contactprenom" type="text" class="form-control" placeholder="Ex: Emmanuel">
                         </div>
                         <br>
-                        <div class="">
-                            <label class="col-form-label">Nom:</label>
-                            <input type="text" class="form-control" placeholder="...">
+                        <div>
+                            <label>Nom</label>
+                            <input id="contactnom" type="text" class="form-control" placeholder="Ex: Macron">
                         </div>
                         <br>
-                        <div class="">
-                            <label class="col-form-label">E-Mail:</label>
-                            <input type="email" class="form-control"  placeholder="...">
+                        <div>
+                            <label>E-Mail</label>
+                            <input id="contactemail" type="email" class="form-control"  placeholder="Ex: emmanuelmacron@gmail.com">
                         </div>
                         <br>
-                        <div class="">
-                            <label class="col-form-label">Message:</label>
-                            <textarea class="form-control" rows="3" placeholder="..."></textarea>
+                        <div>
+                            <label>Message</label>
+                            <textarea id="contactmessage" class="form-control" rows="3" placeholder="..."></textarea>
                         </div>
                     </div>
+                    <div class="container">
+                        <div id="etat_contact"></div>
+                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button type="button" class="btn btn-success"  data-bs-dismiss="modal" >Envoyer</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-success" onclick="Contact();">Envoyer</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <footer class="container-fluid bg-dark position-relative position-absolute bottom-0">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <footer class="container-fluid bg-dark">
             <div class="fs-6 fw-light text-white-50 lh-lg" style="text-align: center;">
                 Copyright © 2021 Youri Novikov. All rights reserved.
             </div>
