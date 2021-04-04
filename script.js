@@ -88,8 +88,6 @@ function Modif(element)
     if (document.getElementById(`modifnom`).value != "" )
     {
         document.getElementById(`nomquiz${element}`).innerHTML = document.getElementById(`modifnom`).value;
-        document.getElementById('etat_modif').innerHTML = "Votre modification a été prise en compte!";
-        document.getElementById('etat_modif').className = "alert alert-success";
         success = true;
     }
     if ( document.getElementById(`modiftype`).value != "" )
